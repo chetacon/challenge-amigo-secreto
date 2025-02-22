@@ -2,8 +2,30 @@
 
 
 let grupoDeAmigos = []
+let sorteador = ''
 
 
+
+// function apresentar() {
+//     titulo = document.querySelector('h2');
+//     titulo.innerHTML("Digite o seu nome, sorteador!")
+//     sorteador = document.getElementById.value
+//     titulo.innerHTML("Agora digite o nome dos seus amigos")
+
+// }
+
+function apresentar() {
+    const titulo = document.querySelector('h2');
+    const inputSorteador = document.getElementById('sorteador'); // Adicione um ID ao input do sorteador no HTML
+    sorteador = inputSorteador.value;
+
+    if (sorteador.trim() === '') {
+        alert('Por favor, digite o nome do sorteador.');
+        return;
+    }
+
+    titulo.textContent = `Agora digite o nome dos seus amigos, ${sorteador}!`;
+}
 
 function adicionarAmigo() {
     let amigo = document.getElementById('amigo').value;
@@ -46,3 +68,46 @@ function atualizarListaDeAmigos() {
 
 } 
 
+function sortear() {
+    if (grupoDeAmigos.length === 0) {
+        alert('Por favor, adicione amigos à lista antes de sortear.');
+        return;
+    }
+    let sorteado = grupoDeAmigos[Math.floor(Math.random() * grupoDeAmigos.length)];
+    return sorteado;
+}
+
+// Função para exibir o resultado do sorteio
+function exibirResultadoSorteio(sorteado) {
+    limparCampo();
+    const resultadoSorteioElement = document.getElementById('resultado');
+    resultadoSorteioElement.innerHTML = '';
+    const li = document.createElement('li');
+    li.textContent = `Seu amigo secreto é: ${sorteado}`;
+    resultadoSorteioElement.appendChild(li);
+}
+
+function sortearAmigo() {
+
+    exibirResultadoSorteio(sortear()); 
+    const listaAmigosElement = document.getElementById('listaAmigos'); // criei uma lista para o proposito de atualizar o HTML
+    listaAmigosElement.innerHTML = ''; // limpa o campo
+    lançarConfetti();
+}
+
+
+function lançarConfetti() {
+    confetti({
+        particleCount: 500, 
+        spread: 160,        
+        origin: { x: 0.5, y: 0.5 } 
+    });
+}
+
+function resetar() {
+    grupoDeAmigos = []
+    sorteador = ''
+    atualizarLista();
+    limparCampo();
+    document.getElementById("resultado").innerHTML = "";
+}
