@@ -1,22 +1,12 @@
 //O principal objetivo deste desafio é fortalecer suas habilidades em lógica de programação. Aqui você deverá desenvolver a lógica para resolver o problema.
 
 
-let grupoDeAmigos = []
-let sorteador = ''
-
-
-
-// function apresentar() {
-//     titulo = document.querySelector('h2');
-//     titulo.innerHTML("Digite o seu nome, sorteador!")
-//     sorteador = document.getElementById.value
-//     titulo.innerHTML("Agora digite o nome dos seus amigos")
-
-// }
+let grupoDeAmigos = [];
+let sorteador = '';
 
 function apresentar() {
-    const titulo = document.querySelector('h2');
-    const inputSorteador = document.getElementById('sorteador'); // Adicione um ID ao input do sorteador no HTML
+    const titulo = document.getElementById('amigosTitle'); // Atualizado para o novo ID
+    const inputSorteador = document.getElementById('sorteador');
     sorteador = inputSorteador.value;
 
     if (sorteador.trim() === '') {
@@ -24,10 +14,16 @@ function apresentar() {
         return;
     }
 
+    document.getElementById('sorteadorSection').style.display = 'none';
+    document.getElementById('amigosSection').style.display = 'block';
+
     titulo.textContent = `Agora digite o nome dos seus amigos, ${sorteador}!`;
 }
 
 function adicionarAmigo() {
+
+    const titulo = document.querySelector('h2');
+    const inputSorteador = document.getElementById('amigosSection');
     let amigo = document.getElementById('amigo').value;
     //Validar a entrada: Implemente uma validação para garantir que o campo não esteja vazio.
     if (amigo.trim('') === '' ) {
@@ -105,9 +101,13 @@ function lançarConfetti() {
 }
 
 function resetar() {
-    grupoDeAmigos = []
-    sorteador = ''
-    atualizarLista();
+    grupoDeAmigos = [];
+    sorteador = '';
+    atualizarListaDeAmigos();
     limparCampo();
     document.getElementById("resultado").innerHTML = "";
+    document.getElementById("sorteador").value = "";
+    document.getElementById('sorteadorSection').style.display = 'block';
+    document.getElementById('amigosSection').style.display = 'none';
+    document.getElementById('amigosTitle').textContent = ''; // Limpa o texto do título
 }

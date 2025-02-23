@@ -92,6 +92,11 @@ body {
     justify-content: center;
 }
 
+.container {
+    width: 600px; /* Ajuste a largura conforme necessário */
+    margin: 0 auto; /* Centraliza o container na página */
+}
+
 /* Estilos de entrada de texto */
 .input-title {
     flex: 1;
